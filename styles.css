@@ -1,0 +1,59 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    color: rgb(0, 238, 255); /* Main portfolio heading */
+}
+
+.name {
+    color: rgb(245, 74, 74); /* Your name in h2 */
+}
+
+.description {
+    color: rgb(134, 97, 15); /* Paragraph describing portfolio */
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: rgb(196, 24, 110); /* Links to lab pages */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.dark-mode h1 {
+    color: cyan;
+}
+
+body.dark-mode .name {
+    color: lightcoral;
+}
+
+body.dark-mode .description {
+    color: gold;
+}
+
+body.dark-mode a {
+    color: hotpink;
+}

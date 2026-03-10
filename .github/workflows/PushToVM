@@ -1,0 +1,24 @@
+name: Push To Windows VM
+#Name of the Worklow
+
+on:
+ Push:
+  branches: [main]
+  #Runs every time main is pushed to
+
+jobs:
+  deplpy:
+   runs-on: self-hosted
+   #Deploys on the self-hosted Uni VM (in this case it should be VM1)
+
+   steps:
+    - uses:
+    - name: Deploy to IIS folder
+    shell: powershell
+    #Uses Powershell on the local machine
+    run:  |
+    $src = "${env:GITHUB_WORKSPACE}\* #Sets the source to be the current GitHub repository.
+    $Sdst = "C:\inetpub\wwwroot\" #Sets the destination to be the website folder.
+   
+    New-Item -ItemType Directory -Force -Path $dst | Out-Null #Ensures the iis folder exists.
+    Copy-Item -Path $src -Destination $dst -Recurse -Force #Copies repository across into the IIS folder

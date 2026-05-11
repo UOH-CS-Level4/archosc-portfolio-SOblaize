@@ -8,8 +8,43 @@
 </head>
 <body>
 <div class="container">
+<nav class="navbar">
+<a href="index.html">Home</a>
+<a href="Github1.html">GitHub Lab 1</a>
+<a href="Github2.html">GitHub Lab 2</a>
+<a href="Github3.html">HTML/CSS/JS Lab</a>
+<a href="lab2.html">VM Lab</a>
+<a href="os-scheduling.html">OS Scheduling</a>
+<a href="os-memory.html">OS Memory</a>
+<a href="resource-allocation.html">Resource Allocation</a>
+</nav>
+
 <h1>OS Scheduling Lab</h1>
-<p>Add your screenshots and descriptions here.</p>
+
+<h2>1. Long Term Scheduling</h2>
+<p>I wrote a C# program that filters jobs based on priority into ready queues while allowing only high priority jobs to get admitted.</p>
+<img src="pictures/6,8.png" alt="Long Term Scheduling" style="max-width:100%;">
+<img src="pictures/11,8.png" alt="Long Term Scheduling 2" style="max-width:100%;">
+
+<h2>2. FCFS Scheduling</h2>
+<p>I implemented First-Come-First-Served scheduling. I created a Process class to hold the metrics of each process, sorted processes by arrival time and calculated finish time, turnaround time and normalised turnaround time. I also printed the Gantt chart showing execution order. Process F had a normalised turnaround of 8.</p>
+<img src="pictures/7,8.png" alt="FCFS Scheduling" style="max-width:100%;">
+<img src="pictures/3,8.png" alt="FCFS Output" style="max-width:100%;">
+
+<h2>3. Round-Robin Scheduling</h2>
+<p>I implemented Round Robin scheduling with 4 varying time slices (TQ = 1, 3, 4, 6). Each process has a remaining time field which decreases by the time slice each time it runs. When remaining time reaches zero the process ends, otherwise it rejoins the queue. The three metrics (finish time, turnaround, normalised turnaround) were calculated for each TQ value. As TQ increases, average turnaround time increases towards the FCFS value.</p>
+<img src="pictures/12,8.png" alt="Round Robin Scheduling" style="max-width:100%;">
+<img src="pictures/9,8.png" alt="Round Robin Output" style="max-width:100%;">
+<img src="pictures/2,8.png" alt="Round Robin Output 2" style="max-width:100%;">
+<img src="pictures/4,8.png" alt="Round Robin Output 3" style="max-width:100%;">
+
+<h2>4. Priority-Based Round Robin</h2>
+<p>I extended the Round Robin simulation to add priority-based scheduling. The ready queue is sorted by priority so higher priority processes run first. I tested with TQ = 1 and TQ = 6.</p>
+<img src="pictures/10,8.png" alt="Priority Round Robin" style="max-width:100%;">
+<img src="pictures/1,8.png" alt="Priority Round Robin Output" style="max-width:100%;">
+<img src="pictures/5,8.png" alt="Priority Round Robin Output 2" style="max-width:100%;">
+<img src="pictures/8,8.png" alt="Priority Round Robin Output 3" style="max-width:100%;">
+
 </div>
 <script src="script.js"></script>
 </body>

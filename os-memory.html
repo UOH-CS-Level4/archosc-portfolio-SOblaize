@@ -1,123 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OS Memory &amp; MMU — ARCHOSC Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OS Memory & MMU</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-brand">ARCHOSC Portfolio</div>
-    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="Github1.html">Intro to GitHub</a></li>
-      <li><a href="Github2.html">Intro to YAML</a></li>
-      <li><a href="Github3.html">HTML/CSS/JS Lab</a></li>
-      <li><a href="vm-access.html">Accessing a VM</a></li>
-      <li><a href="vm-dev.html">Developing in a VM</a></li>
-      <li><a href="os-scheduling.html">OS Scheduling</a></li>
-      <li><a href="OS-Memory.html" class="active">OS Memory &amp; MMU</a></li>
-      <li><a href="resources-allocation.html">Resource Allocation</a></li>
-    </ul>
-  </nav>
-  <main class="lab-page">
-    <div class="lab-header">
-      <span class="lab-tag">OS Lab</span>
-      <h1>OS Memory &amp; MMU Lab</h1>
-      <p>Exploring virtual memory, page tables, address translation, TLBs, and memory-mapped decoders.</p>
-    </div>
+<div class="container">
+<nav class="navbar">
+<a href="index.html">Home</a>
+<a href="Github1.html">GitHub Lab 1</a>
+<a href="Github2.html">GitHub Lab 2</a>
+<a href="Github3.html">HTML/CSS/JS Lab</a>
+<a href="lab2.html">VM Lab</a>
+<a href="os-scheduling.html">OS Scheduling</a>
+<a href="os-memory.html">OS Memory</a>
+<a href="resource-allocation.html">Resource Allocation</a>
+</nav>
 
-    <div class="lab-section">
-      <h2>Task 1 — Virtual Memory Calculations</h2>
-      <h3>Part i — Page and Memory Sizes</h3>
-      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
-        <li>Virtual pages = 2⁴ = <strong>16 virtual pages</strong></li>
-        <li>Page size = 2⁸ = <strong>256 bytes per page</strong></li>
-        <li>Physical pages = 2³ = <strong>8 physical pages</strong></li>
-      </ul>
-      <h3>Part ii — Address Translation</h3>
-      <p>Converting virtual address <code>0x2C8</code> to a physical address:</p>
-      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
-        <li>Binary: <code>001011001000</code></li>
-        <li>VPN (first 4 bits): <code>0010</code> = <strong>2</strong></li>
-        <li>Offset (last 8 bits): <code>11001000</code> = <code>0xC8</code></li>
-        <li>Look up VPN 2 in page map → R = 1, PPN = 4</li>
-        <li>Physical address = PPN 4 + offset 0xC8 = <strong>0x4C8</strong></li>
-      </ul>
-      <p>The VPN is translated to a physical page number via the page map while the offset stays the same.</p>
-      <img src="pictures/1,9.png" alt="Task 1 address translation" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
-    </div>
+<h1>OS Memory & MMU Lab</h1>
 
-    <div class="lab-section">
-      <h2>Task 2 — Page Frame Boundaries</h2>
-      <p>Each page frame is <strong>4096 bytes (4KB)</strong>. End address = frame number × 4096 + 4095.</p>
-      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
-        <li>Frame 0: ends at 4095 → <strong>D = 4095</strong></li>
-        <li>Frame 3: ends at 16383 → <strong>C = 16383</strong></li>
-        <li>Frame 5: ends at 24575 → <strong>B = 24575</strong></li>
-        <li>Frame 7: ends at 32767 → <strong>A = 32767</strong></li>
-      </ul>
-      <img src="pictures/2,9.png" alt="Page frame boundaries" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
-    </div>
+<h2>Task 1 - Virtual Memory Calculations</h2>
+<h3>Part i - Page and Memory Sizes</h3>
+<ul>
+<li>Virtual pages = 2⁴ = 16 virtual pages</li>
+<li>Page size = 2⁸ = 256 bytes per page</li>
+<li>Physical pages = 2³ = 8 physical pages</li>
+</ul>
+<h3>Part ii - Address Translation</h3>
+<p>Converting virtual address 0x2C8 to binary = 001011001000</p>
+<ul>
+<li>VPN (first 4 bits) = 0010 = 2</li>
+<li>Offset (last 8 bits) = 11001000 = 0xC8</li>
+<li>Look up VPN 2 in page map: R = 1, PPN = 4</li>
+<li>Physical address = PPN 4 + offset 0xC8 = 0x4C8</li>
+</ul>
+<p>The VPN is translated to a physical page number via the page map while the offset stays the same.</p>
+<img src="pictures/1,9.png" alt="Task 1 address translation" style="max-width:100%;">
 
-    <div class="lab-section">
-      <h2>Task 3 — 32-bit Virtual Address Translation</h2>
-      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
-        <li>First 20 bits (VPN) = <strong>6</strong></li>
-        <li>Last 12 bits (offset) = <code>0x16D</code></li>
-      </ul>
-      <h3>2a — Virtual Page Referenced</h3>
-      <p>Virtual page = <strong>6</strong></p>
-      <h3>2b — Page Frame Value</h3>
-      <p>Looking up virtual page 6 — no entry found, R = 0 → <strong>page fault</strong>.</p>
-      <h3>2c — Physical Address</h3>
-      <p>No physical address exists. The OS must load the page from disk into a free frame first, then the MMU retries the translation.</p>
-      <img src="pictures/3,9.png" alt="32-bit address translation" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
-    </div>
+<h2>Task 2 - Page Frame Boundaries</h2>
+<p>Each page frame is 4096 bytes (4KB). End address = frame number x 4096 + 4095.</p>
+<ul>
+<li>Frame 0: ends at 4095 → D = 4095</li>
+<li>Frame 3: ends at 16383 → C = 16383</li>
+<li>Frame 5: ends at 24575 → B = 24575</li>
+<li>Frame 7: ends at 32767 → A = 32767</li>
+</ul>
+<img src="pictures/2,9.png" alt="Page frame boundaries" style="max-width:100%;">
 
-    <div class="lab-section">
-      <h2>Task 4 — Translation Lookaside Buffers (TLB)</h2>
-      <h3>4.1 — TLB Calculations</h3>
-      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
-        <li>Physical memory = 2²⁴ bytes, page size = 2¹⁰ → <strong>16,384 pages</strong> in physical memory</li>
-        <li>Virtual memory = 2³² bytes → <strong>4,194,304</strong> page table entries</li>
-        <li>Bits per entry: 14 (PPN) + 1 (dirty) + 1 (valid) = <strong>16 bits = 2 bytes</strong></li>
-        <li>Page table size = 4,194,304 × 2 = 8MB → <strong>8,192 pages</strong></li>
-      </ul>
-      <h3>4.2 — Physical Address for 0x1804</h3>
-      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
-        <li>VPN = 6, offset = <code>0x004</code></li>
-        <li>TLB check → VPN 6 found, PPN = 2 → <strong>TLB hit!</strong></li>
-        <li>Physical address = <strong>0x0804</strong></li>
-      </ul>
-      <h3>Virtual address 0x0FC</h3>
-      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
-        <li>VPN = 0 → TLB miss → page map check → R = 0 → <strong>Page fault!</strong></li>
-        <li>OS must load the page from disk before translation can continue.</li>
-      </ul>
-      <img src="pictures/4,9.png" alt="TLB calculations" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
-      <img src="pictures/5,9.png" alt="TLB simulation code" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
-    </div>
+<h2>Task 3 - 32-bit Virtual Address Translation</h2>
+<ul>
+<li>First 20 bits (VPN) = 6</li>
+<li>Last 12 bits (offset) = 0x16D</li>
+</ul>
+<h3>2a - Virtual Page Referenced</h3>
+<p>Virtual page = 6</p>
+<h3>2b - Page Frame Value</h3>
+<p>Looking up virtual page 6 - no entry found, R = 0 → page fault.</p>
+<h3>2c - Physical Address</h3>
+<p>No physical address exists. The OS must load the page from disk into a free frame first, then the MMU retries the translation.</p>
+<img src="pictures/3,9.png" alt="32-bit address translation" style="max-width:100%;">
 
-    <div class="lab-section">
-      <h2>Task 5 — Memory Decoder</h2>
-      <h3>5.1 — Decoder Input Bits</h3>
-      <p>14 memory locations need 4 bits (2⁴ = 16 addresses) → <strong>4-to-16 decoder</strong> with 4 address bits, 16 output lines, Write/Read/Enable control lines, and a 16-bit data bus.</p>
-      <h3>5.2 — Combined Address Patterns</h3>
-      <p>Address format: <code>Write, Read, Enable, A3 A2 A1 A0</code> (7 bits total)</p>
-      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
-        <li><strong>Read FEAD</strong> (index A = 1010): Write=0, Read=1, Enable=1 → <strong>0x6A</strong></li>
-        <li><strong>Write to index C</strong> (1100): Write=1, Read=0, Enable=1 → <strong>0xAC</strong></li>
-      </ul>
-      <img src="pictures/6,9.png" alt="4-to-16 decoder diagram" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
-      <img src="pictures/7,9.png" alt="TLB simulation output" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
-      <div class="info-box">
-        <strong>Key concepts:</strong> Virtual to physical address translation · Page faults · TLB hits and misses · Page frame boundaries · Memory decoder design
-      </div>
-    </div>
-  </main>
-  <script>function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}</script>
+<h2>Task 4 - Translation Lookaside Buffers (TLB)</h2>
+<h3>4.1 - TLB Calculations</h3>
+<ul>
+<li>Physical memory = 2²⁴ bytes, page size = 2¹⁰ → 16,384 pages in physical memory</li>
+<li>Virtual memory = 2³² bytes → 4,194,304 page table entries</li>
+<li>Bits per entry: 14 (PPN) + 1 (dirty) + 1 (valid) = 16 bits = 2 bytes</li>
+<li>Page table size = 4,194,304 x 2 = 8MB → 8,192 pages</li>
+</ul>
+<h3>4.2 - Physical Address for 0x1804</h3>
+<ul>
+<li>VPN = 6, offset = 0x004</li>
+<li>TLB check → VPN 6 found, PPN = 2 → TLB hit!</li>
+<li>Physical address = 0x0804</li>
+</ul>
+<h3>Virtual address 0x0FC</h3>
+<ul>
+<li>VPN = 0 → TLB miss → page map check → R = 0 → Page fault!</li>
+<li>OS must load the page from disk before translation can continue.</li>
+</ul>
+<img src="pictures/4,9.png" alt="TLB calculations" style="max-width:100%;">
+<img src="pictures/5,9.png" alt="TLB simulation code" style="max-width:100%;">
+
+<h2>Task 5 - Memory Decoder</h2>
+<h3>5.1 - Decoder Input Bits</h3>
+<p>14 memory locations need 4 bits (2⁴ = 16 addresses) → 4-to-16 decoder with 4 address bits, 16 output lines, Write/Read/Enable control lines, and a 16-bit data bus.</p>
+<h3>5.2 - Combined Address Patterns</h3>
+<ul>
+<li>Read FEAD (index A = 1010): Write=0, Read=1, Enable=1 → 0x6A</li>
+<li>Write to index C (1100): Write=1, Read=0, Enable=1 → 0xAC</li>
+</ul>
+<img src="pictures/6,9.png" alt="4-to-16 decoder diagram" style="max-width:100%;">
+<img src="pictures/7,9.png" alt="TLB simulation output" style="max-width:100%;">
+
+</div>
+<script src="script.js"></script>
 </body>
 </html>

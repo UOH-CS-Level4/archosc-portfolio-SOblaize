@@ -37,7 +37,7 @@
 <li>Physical address = PPN 4 + offset 0xC8 = 0x4C8</li>
 </ul>
 <p>The VPN is translated to a physical page number via the page map while the offset stays the same.</p>
-<img src="pictures/1,9.png" alt="Task 1 address translation" style="max-width:100%;">
+<img src="pictures/1_9.png" alt="Task 1 address translation" style="max-width:100%;">
 
 <h2>Task 2 - Page Frame Boundaries</h2>
 <p>Each page frame is 4096 bytes (4KB). End address = frame number x 4096 + 4095.</p>
@@ -47,7 +47,7 @@
 <li>Frame 5: ends at 24575 → B = 24575</li>
 <li>Frame 7: ends at 32767 → A = 32767</li>
 </ul>
-<img src="pictures/2,9.png" alt="Page frame boundaries" style="max-width:100%;">
+<img src="pictures/2_9.png" alt="Page frame boundaries" style="max-width:100%;">
 
 <h2>Task 3 - 32-bit Virtual Address Translation</h2>
 <ul>
@@ -60,7 +60,7 @@
 <p>Looking up virtual page 6 - no entry found, R = 0 → page fault.</p>
 <h3>2c - Physical Address</h3>
 <p>No physical address exists. The OS must load the page from disk into a free frame first, then the MMU retries the translation.</p>
-<img src="pictures/3,9.png" alt="32-bit address translation" style="max-width:100%;">
+<img src="pictures/3_9.png" alt="32-bit address translation" style="max-width:100%;">
 
 <h2>Task 4 - Translation Lookaside Buffers (TLB)</h2>
 <h3>4.1 - TLB Calculations</h3>
@@ -81,8 +81,8 @@
 <li>VPN = 0 → TLB miss → page map check → R = 0 → Page fault!</li>
 <li>OS must load the page from disk before translation can continue.</li>
 </ul>
-<img src="pictures/4,9.png" alt="TLB calculations" style="max-width:100%;">
-<img src="pictures/5,9.png" alt="TLB simulation code" style="max-width:100%;">
+<img src="pictures/4_9.png" alt="TLB calculations" style="max-width:100%;">
+<img src="pictures/5_9.png" alt="TLB simulation code" style="max-width:100%;">
 
 <h2>Task 5 - Memory Decoder</h2>
 <h3>5.1 - Decoder Input Bits</h3>
@@ -92,8 +92,8 @@
 <li>Read FEAD (index A = 1010): Write=0, Read=1, Enable=1 → 0x6A</li>
 <li>Write to index C (1100): Write=1, Read=0, Enable=1 → 0xAC</li>
 </ul>
-<img src="pictures/6,9.png" alt="4-to-16 decoder diagram" style="max-width:100%;">
-<img src="pictures/7,9.png" alt="TLB simulation output" style="max-width:100%;">
+<img src="pictures/6_9.png" alt="4-to-16 decoder diagram" style="max-width:100%;">
+<img src="pictures/7_9.png" alt="TLB simulation output" style="max-width:100%;">
 
 </div>
 <script src="script.js"></script>

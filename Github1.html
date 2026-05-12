@@ -1,28 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Lab 1</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Intro to GitHub — ARCHOSC Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <nav class="navbar">
+    <div class="nav-brand">ARCHOSC Portfolio</div>
+    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Github1.html" class="active">Intro to GitHub</a></li>
+      <li><a href="Github2.html">Intro to YAML</a></li>
+      <li><a href="Github3.html">HTML/CSS/JS Lab</a></li>
+      <li><a href="vm-access.html">Accessing a VM</a></li>
+      <li><a href="vm-dev.html">Developing in a VM</a></li>
+      <li><a href="os-scheduling.html">OS Scheduling</a></li>
+      <li><a href="OS-Memory.html">OS Memory &amp; MMU</a></li>
+      <li><a href="resources-allocation.html">Resource Allocation</a></li>
+    </ul>
+  </nav>
+  <main class="lab-page">
+    <div class="lab-header">
+      <span class="lab-tag">Lab 1</span>
+      <h1>Intro to GitHub</h1>
+      <p>Setting up a local repository, connecting to GitHub, and making your first push.</p>
+    </div>
 
-<div class="container">
+    <div class="lab-section">
+      <h2>Step 1 — Setting Up the Workspace</h2>
+      <p>I created a folder in my OneDrive workspace called <strong>ArchOSC Assignment</strong> with a sub-folder called <strong>pictures</strong> to store all my screenshots.</p>
+      <img src="pictures/1,2.png" alt="Workspace folder setup" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-    <h1>GitHub Lab 1</h1>
+    <div class="lab-section">
+      <h2>Step 2 — Initialising a Local Git Repository</h2>
+      <p>I opened the terminal by right-clicking inside my workspace folder and ran the following command to initialise an empty Git repository:</p>
+      <div class="code-block">git init</div>
+      <img src="pictures/2,2.png" alt="git init output" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-    <h2 class="name">By Your Name Here</h2>
+    <div class="lab-section">
+      <h2>Step 3 — Creating a Repository on GitHub</h2>
+      <p>I created a new repository on my GitHub account then linked my local repository to it using:</p>
+      <div class="code-block">git remote add origin &lt;your-repository-link&gt;</div>
+      <img src="pictures/3,2.png" alt="New GitHub repository" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-    <p class="description">
-        This page contains screenshots and explanations from Lab 1.
-    </p>
+    <div class="lab-section">
+      <h2>Step 4 — Pulling from GitHub</h2>
+      <p>Before pushing any files I pulled the information GitHub generated when the repo was created using:</p>
+      <div class="code-block">git pull origin main</div>
+      <p>I was redirected to the GitHub sign-in page to authenticate before the pull completed.</p>
+      <img src="pictures/4,2.png" alt="GitHub pull confirmation" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-    <a href="index.html">Back to Portfolio</a>
+    <div class="lab-section">
+      <h2>Step 5 — Creating the Website in VS Code</h2>
+      <p>I opened Visual Studio Code, wrote the code to create a website, saved it to my <strong>ArchOSC Assignment</strong> folder, then opened it in the browser to confirm it displayed correctly.</p>
+      <img src="pictures/5,2.png" alt="Website open in browser" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-</div>
+    <div class="lab-section">
+      <h2>Step 6 — Staging and Committing Files</h2>
+      <p>I ran <code>git status</code> to see which files Git had detected, then added all untracked files and committed them:</p>
+      <div class="code-block">git status
+git add .
+git commit -m "A message about the commit here"</div>
+      <p>Running <code>git status</code> again showed the files in <strong>green</strong>, confirming they were now tracked.</p>
+      <img src="pictures/6,2.png" alt="git status showing files in green" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-<script src="script.js"></script>
-</body>
-</html>
-            
+    <div class="lab-section">
+      <h2>Step 7 — Renaming the Branch</h2>
+      <p>To match GitHub's default branch name I ran:</p>
+      <div class="code-block">git branch -m master main</div>
+      <img src="pictures/7,2.png" alt="Branch rename output" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
+
+    <div class="lab-section">
+      <h2>Step 8 — Pushing to GitHub</h2>
+      <p>With everything committed I pushed the repository to GitHub:</p>
+      <div class="code-block">git push -u origin main</div>
+      <img src="pictures/8,2.png" alt="Push confirmation" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
+
+    <div class="lab-section">
+      <h2>Step 9 — Customising the Website</h2>
+      <p>I made further improvements — changed the background colour, changed the text colour, and added my name — then committed and pushed the updates.</p>
+      <img src="pictures/9,2.png" alt="Updated website" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
+
+    <div class="lab-section">

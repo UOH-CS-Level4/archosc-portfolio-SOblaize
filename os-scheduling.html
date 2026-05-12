@@ -1,51 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OS Scheduling</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OS Scheduling — ARCHOSC Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="container">
-<nav class="navbar">
-<a href="index.html">Home</a>
-<a href="Github1.html">GitHub Lab 1</a>
-<a href="Github2.html">GitHub Lab 2</a>
-<a href="Github3.html">HTML/CSS/JS Lab</a>
-<a href="lab2.html">VM Lab</a>
-<a href="os-scheduling.html">OS Scheduling</a>
-<a href="os-memory.html">OS Memory</a>
-<a href="resource-allocation.html">Resource Allocation</a>
-</nav>
+  <nav class="navbar">
+    <div class="nav-brand">ARCHOSC Portfolio</div>
+    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Github1.html">Intro to GitHub</a></li>
+      <li><a href="Github2.html">Intro to YAML</a></li>
+      <li><a href="Github3.html">HTML/CSS/JS Lab</a></li>
+      <li><a href="vm-access.html">Accessing a VM</a></li>
+      <li><a href="vm-dev.html">Developing in a VM</a></li>
+      <li><a href="os-scheduling.html" class="active">OS Scheduling</a></li>
+      <li><a href="OS-Memory.html">OS Memory &amp; MMU</a></li>
+      <li><a href="resources-allocation.html">Resource Allocation</a></li>
+    </ul>
+  </nav>
+  <main class="lab-page">
+    <div class="lab-header">
+      <span class="lab-tag">OS Lab</span>
+      <h1>OS Scheduling Lab</h1>
+      <p>Implementing and comparing CPU scheduling algorithms — Long-Term Scheduling, FCFS, Round-Robin, and Priority-Based Round-Robin — using C#.</p>
+    </div>
 
-<h1>OS Scheduling Lab</h1>
+    <div class="lab-section">
+      <h2>Section 1 — Long-Term Scheduling</h2>
+      <p>I wrote a C# program that filters jobs based on priority into ready queues, allowing only high-priority jobs to be admitted. This simulates how an OS long-term scheduler controls which processes are loaded into memory.</p>
+      <img src="pictures/1,8.png" alt="Long-term scheduling output" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+      <img src="pictures/2,8.png" alt="Long-term scheduling code" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-<h2>1. Long Term Scheduling</h2>
-<p>I wrote a C# program that filters jobs based on priority into ready queues while allowing only high priority jobs to get admitted.</p>
-<img src="pictures/6,8.png" alt="Long Term Scheduling" style="max-width:100%;">
-<img src="pictures/11,8.png" alt="Long Term Scheduling 2" style="max-width:100%;">
+    <div class="lab-section">
+      <h2>Section 2 — FCFS (First-Come, First-Served)</h2>
+      <p>I implemented the First-Come, First-Served scheduling algorithm in C#:</p>
+      <ul style="margin: 0.5rem 0 0.75rem 1.5rem; color: var(--text);">
+        <li>Created a <strong>Process class</strong> to hold the metrics of each process.</li>
+        <li>Sorted processes by <strong>arrival time</strong> and iterated through them in order.</li>
+        <li>Calculated <strong>finish time</strong>, <strong>turnaround time</strong>, and <strong>normalised turnaround time</strong>.</li>
+        <li>Printed a <strong>Gantt chart</strong> showing execution order and time points.</li>
+      </ul>
+      <h3>Notable Result</h3>
+      <p>Process F had a normalised turnaround time of <strong>8</strong>.</p>
+      <img src="pictures/3,8.png" alt="FCFS output and Gantt chart" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+      <img src="pictures/4,8.png" alt="FCFS code" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-<h2>2. FCFS Scheduling</h2>
-<p>I implemented First-Come-First-Served scheduling. I created a Process class to hold the metrics of each process, sorted processes by arrival time and calculated finish time, turnaround time and normalised turnaround time. I also printed the Gantt chart showing execution order. Process F had a normalised turnaround of 8.</p>
-<img src="pictures/7,8.png" alt="FCFS Scheduling" style="max-width:100%;">
-<img src="pictures/3,8.png" alt="FCFS Output" style="max-width:100%;">
+    <div class="lab-section">
+      <h2>Section 3 — Round-Robin Scheduling</h2>
+      <p>I implemented Round-Robin scheduling with four time quantum values: <code>TQ = 1</code>, <code>TQ = 3</code>, <code>TQ = 4</code>, and <code>TQ = 6</code>. Each process has a remaining time field that decreases by the time quantum each run. When it reaches zero the process finishes; otherwise it re-joins the queue.</p>
+      <h3>Key Observation</h3>
+      <p>As the TQ value increases, the average turnaround time increases and approaches the FCFS value — a very large time quantum makes Round-Robin behave like FCFS.</p>
+      <img src="pictures/5,8.png" alt="Round-Robin output" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+      <img src="pictures/6,8.png" alt="Round-Robin code" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+    </div>
 
-<h2>3. Round-Robin Scheduling</h2>
-<p>I implemented Round Robin scheduling with 4 varying time slices (TQ = 1, 3, 4, 6). Each process has a remaining time field which decreases by the time slice each time it runs. When remaining time reaches zero the process ends, otherwise it rejoins the queue. The three metrics (finish time, turnaround, normalised turnaround) were calculated for each TQ value. As TQ increases, average turnaround time increases towards the FCFS value.</p>
-<img src="pictures/12,8.png" alt="Round Robin Scheduling" style="max-width:100%;">
-<img src="pictures/9,8.png" alt="Round Robin Output" style="max-width:100%;">
-<img src="pictures/2,8.png" alt="Round Robin Output 2" style="max-width:100%;">
-<img src="pictures/4,8.png" alt="Round Robin Output 3" style="max-width:100%;">
-
-<h2>4. Priority-Based Round Robin</h2>
-<p>I extended the Round Robin simulation to add priority-based scheduling. The ready queue is sorted by priority so higher priority processes run first. I tested with TQ = 1 and TQ = 6.</p>
-<img src="pictures/10,8.png" alt="Priority Round Robin" style="max-width:100%;">
-<img src="pictures/1,8.png" alt="Priority Round Robin Output" style="max-width:100%;">
-<img src="pictures/5,8.png" alt="Priority Round Robin Output 2" style="max-width:100%;">
-<img src="pictures/8,8.png" alt="Priority Round Robin Output 3" style="max-width:100%;">
-
-</div>
-<script src="script.js"></script>
+    <div class="lab-section">
+      <h2>Section 4 — Priority-Based Round-Robin</h2>
+      <p>I extended the Round-Robin simulation to include priority-based scheduling. The ready queue is sorted by priority so higher-priority processes run first. I tested <code>TQ = 1</code> and <code>TQ = 6</code>.</p>
+      <img src="pictures/7,8.png" alt="Priority Round-Robin output" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+      <img src="pictures/8,8.png" alt="Priority Round-Robin code" style="max-width:100%;border-radius:8px;margin:1rem 0;" />
+      <div class="info-box">
+        <strong>Algorithms implemented:</strong> Long-Term Scheduling · FCFS · Round-Robin (TQ = 1, 3, 4, 6) · Priority-Based Round-Robin<br/>
+        <strong>Language:</strong> C#<br/>
+        <strong>Key takeaway:</strong> Increasing TQ moves Round-Robin performance closer to FCFS. Priority ordering ensures critical processes are always serviced first.
+      </div>
+    </div>
+  </main>
+  <script>function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}</script>
 </body>
 </html>

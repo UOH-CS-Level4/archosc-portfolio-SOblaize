@@ -18,8 +18,26 @@
 <a href="os-memory.html">OS Memory</a>
 <a href="resource-allocation.html">Resource Allocation</a>
 </nav>
+
 <h1>Resource Allocation Lab</h1>
-<p>Add your screenshots and descriptions here.</p>
+
+<h2>Task 1: Manual Analysis with Banker's Algorithm</h2>
+<p>I used the Banker's Algorithm to check if the system is in a safe state with the original resources. Available resources: R1 = 10, R2 = 5, R3 = 7. The system is safe because each process could be allocated resources, finish, and release them back. The safe sequence was P1 → P2 → P3 → P4 → P5.</p>
+<img src="pictures/1,10.png" alt="Task 1 Banker's Algorithm" style="max-width:100%;">
+
+<h2>Task 2: Increasing Resources</h2>
+<p>R1 was increased to 12, meaning processes requiring R1 can be satisfied more easily. The system remained safe with the same sequence P1 → P2 → P3 → P4 → P5. Available resources: R1 = 12, R2 = 5, R3 = 7.</p>
+<img src="pictures/2,10.png" alt="Task 2 Increased Resources" style="max-width:100%;">
+
+<h2>Task 3: Further Increase</h2>
+<p>R1 remained 12, R3 remained 7, but R2 was increased from 5 to 7. This allowed more flexibility in scheduling and the system remained safe. Available resources: R1 = 12, R2 = 7, R3 = 7.</p>
+<img src="pictures/3,10.png" alt="Task 3 Further Increase" style="max-width:100%;">
+
+<h2>Task 4: C# Implementation</h2>
+<p>I wrote a C# program that takes user inputs for resource types and processes, accepts allocation and maximum demand matrices, calculates the need matrix, and runs the Banker's Algorithm to find a safe sequence. It outputs whether the system is safe or unsafe.</p>
+<img src="pictures/4,10.png" alt="Task 4 C# Program" style="max-width:100%;">
+<img src="pictures/5,10.png" alt="Task 4 Program Output" style="max-width:100%;">
+
 </div>
 <script src="script.js"></script>
 </body>
